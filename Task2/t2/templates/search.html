@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    
+    <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/Footer-Dark.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/Team-Grid.css' %}" >
+    <style>
+        .avatar {
+          vertical-align: middle;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+         
+        }
+        .size {
+  height: 400px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding:2%;
+  border:5px solid #212529;
+}
+
+ .caption {
+    font-size: 20px;
+    color: white; 
+    text-align: center;
+    background-color: #212529;
+    width: 100%;
+}
+        </style>
+</head>
+
+<body class="container">
+    <nav class="container navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
+        <div class="container"><a class="navbar-brand" href="#"></i>&nbsp;Blogging App</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logoutuser' %}">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br>
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <div class="container">
+                <h1 class="masthead-heading mb-0">Social App&nbsp;</h1>
+                <h2 class="masthead-subheading mb-0">“Every day may not be good but there’s something good in every day.”</h2>
+                <br>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Post +
+                  </button>
+                  
+       
+            </div>
+        </div>
+        <div class="bg-circle-1 bg-circle"></div>
+        <div class="bg-circle-2 bg-circle"></div>
+        <div class="bg-circle-3 bg-circle"></div>
+        <div class="bg-circle-4 bg-circle"></div>
+    </header>
+</br>
+    <h2 class="display-4" style="text-align:center;"> Post</h2>
+ 
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method = "post" action="" enctype="multipart/form-data"> 
+                                {% csrf_token %}
+<label> Image : </label>
+<br>
+{{form.Picture}}
+<br>
+<label>Caption : </label>
+<br>
+	{{form.Message}}
+<br>
+<label>Mode : </label>
+{{form.Mode}}
+    <br>
+           
+                       
+                        <div class="modal-footer">
+                          
+                          <button type="submit" class="btn btn-primary">Post</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        
+
+</div></form>
+                      </div>
+                    </div>
+              
+                  </div>
+                           
+</div>
+<br>
+
+
+
+
+{% for i in posts %}
+<div class="card">
+    <div class="card-header">
+      <h2>{{i.user}} <small>{{i.Date.date}}</small></h2>
+    </div>
+    <div class="card-body">
+     
+      <img class="card-img-top" src={{i.Picture.url}} alt="Card image cap">
+      
+      <p class="card-text"><h4>{{i.Message}}</h4></p>
+    
+    </div>
+  </div>
+{% endfor %}
+
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>FRSM'S Bank Solution</h3>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Copyright @ Hackathon Hunterzzz</p>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script> 
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+
+</html>

@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/Registration-Form-with-Photo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles1.css' %}" >
+</head>
+
+<body>
+    <br>
+    <h2 class="text-info font-weight-light mb-5" style="text-align:center;"></i>&nbsp;<b> Blogging Web App</b></h2>
+    <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder">
+               
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h2 class="text-center"><strong>Create</strong> an account.</h2>
+                
+              
+                <div class="form-group">{{form.username}}</div>
+                <div class="form-group">{{form.email}}</div>
+
+                <div class="form-group">{{form.password1}}</div>
+                <div class="form-group">{{form.password2}}</div>
+                <div class="form-group" id ="div11">
+                    <table style="width:100%">
+                        <tr>
+                          <th> Captcha Verification :</th>
+                          <th><p id="demo" style="float:left;top: 50%;border-style: outset;padding:5px;"></p> </th> 
+                          <th><a href="{% url 'registration' %}"><i class="fa fa-refresh" aria-hidden="true" ></i></a></th>
+                        </tr>
+                        <tr>
+                            <th><input id="first"></th>
+                          <th><p id="demo" style="float:left;">   <button class="btn btn-primary btn-block" onclick="myFunction()" id="bt">Verify</button></p> </th> 
+                        </tr>
+                        </table>
+
+
+
+
+                    
+
+              
+                
+                </div>
+                {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% endif %}
+                <div class="form-group"><button class="btn btn-primary btn-block" id="bt2"  type="submit" >Sign Up</button></div><a class="already" href="{% url 'login' %}">You already have an account? Login here.</a></form>
+               
+            </div>
+    </div>
+    
+   
+ 
+
+    <script src="assets/js/jquery.min.js"></script>
+    
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> 
+
+
+
+    <script>
+        var x=Math.floor(Math.random() * 89) + 11;
+        var y=Math.floor(Math.random() * 89) + 11;
+        var result=x+y;
+        var str=x+" + "+y+"   "
+        document.getElementById("demo").innerHTML = str;
+        document.getElementById("bt2").style.visibility = "collapse";
+            function myFunction() {
+          var x = Number(document.getElementById("first").value);
+          if (x == result) {
+        
+
+            document.getElementById("bt2").style.visibility = "visible";
+            document.getElementById("div11").style.display = "none";
+ 
+          } else {
+            alert('Not Verified Repeat again')
+          }
+        }
+  
+
+
+        </script>
+</body>
+
+</html>
